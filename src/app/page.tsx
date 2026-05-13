@@ -1,3 +1,5 @@
+import { NavBar } from "@/components/navigation/NavBar";
+
 export const metadata = {
   title: "Dare Oduale | Business Design & Transformation Coaching",
   description:
@@ -12,10 +14,10 @@ export const metadata = {
   },
 };
 
-
 export default function HomePage() {
   return (
     <>
+      <NavBar />
     </>
   );
 }
