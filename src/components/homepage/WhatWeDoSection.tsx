@@ -1,12 +1,11 @@
 "use client";
 
-import { OfferingCard } from "@/components/shared/OfferingCard";
+import Image, { StaticImageData } from "next/image";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import Enggagement from "../../../public/images/Enggagement.png";
 import Team from "../../../public/images/team.png";
 import Group from "../../../public/images/group.png";
-
-import { StaticImageData } from "next/image";
-import { ArrowRight } from "lucide-react";
 
 interface Service {
   id: string;
@@ -20,18 +19,7 @@ interface Service {
 
 const services: Service[] = [
   {
-    id: "1-1-engagement",
-    title: "1:1 Engagement",
-    subtitle:
-      "Leadership & Digital Transformation Coaching for high-stakes decision makers.",
-    steps: ["Diagnostic", "Structured Session", "Integration"],
-    serviceOffering: "CORE OFFERING",
-    image: Enggagement,
-    imageAlt:
-      "Professional one-on-one coaching session with hands together showing collaboration and engagement",
-  },
-  {
-    id: "team-organization",
+    id: "1",
     title: "Team & Organization",
     subtitle:
       "Business Design Consulting to restructure workflows and strategy from the ground up.",
@@ -42,11 +30,22 @@ const services: Service[] = [
       "Business team in modern office meeting room collaborating on strategy and workflow design",
   },
   {
-    id: "group-format",
-    title: "Group Format",
+    id: "2",
+    title: "Clerity Architects",
+    subtitle:
+      "Leadership & Digital Transformation Coaching for high-stakes decision makers.",
+    steps: ["Diagnostic", "Structured Session", "Integration"],
+    serviceOffering: "CORE OFFERING",
+    image: Enggagement,
+    imageAlt:
+      "Professional one-on-one coaching session with hands together showing collaboration and engagement",
+  },
+  {
+    id: "3",
+    title: "Steward",
     subtitle:
       "Agile Bootcamp & Team Training for groups looking to accelerate their execution speed.",
-    steps: ["Pre-Cohort Intake", "Post-programme"],
+    steps: ["Discipleship", "Leadership", "Community"],
     serviceOffering: "CORE OFFERING",
     image: Group,
     imageAlt:
@@ -54,56 +53,127 @@ const services: Service[] = [
   },
 ];
 
+function ServiceImage({
+  image,
+  imageAlt,
+}: {
+  image: string | StaticImageData;
+  imageAlt: string;
+}) {
+  if (!image) return null;
+
+  if (
+    typeof image === "string" ||
+    (typeof image === "object" && "src" in image)
+  ) {
+    return (
+      <div className="relative w-full h-52 sm:h-60 md:h-64 lg:h-72 bg-gray-200 overflow-hidden">
+        <Image
+          src={image as StaticImageData}
+          alt={imageAlt || ""}
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          fill
+          className="object-cover"
+        />
+      </div>
+    );
+  }
+
+  return (
+    <div className="w-full h-52 sm:h-60 md:h-64 lg:h-72 bg-gray-200 overflow-hidden flex items-center justify-center">
+      {image}
+    </div>
+  );
+}
+
 export function WhatWeDoSection() {
   return (
     <section className="w-full bg-border" aria-labelledby="what-we-do-heading">
-      <div className="px-6 py-12 md:px-14 md:py-18 mx-auto">
+      <div className="px-6 sm:px-10 md:px-14 py-12 sm:py-16 md:py-24 mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-18 text-center">
-          <p className="font-inter text-xs font-bold tracking-[1.5px] uppercase text-secondary mb-4">
-            What We Do
+        <div className="mb-10 sm:mb-14 md:mb-16 text-center">
+          <p className="font-inter text-xs font-bold tracking-[1.5px] uppercase text-secondary mb-3 sm:mb-4">
+            Areas of Focus
           </p>
-          <h2 className="text-2xl md:text-3xl font-semibold">
+          <h2 className="text-2xl sm:text-3xl font-semibold">
             Three Formats, One goal:
           </h2>
           <span
             id="what-we-do-heading"
-            className="text-2xl md:text-3xl font-bold font-heading"
+            className="text-2xl sm:text-3xl font-bold font-heading"
           >
             GROWTH AND HAPPINESS
           </span>
         </div>
 
         {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {services.map((service) => (
-            <OfferingCard
-              key={service.id}
-              title={service.title}
-              subtitle={service.subtitle}
-              steps={service.steps}
-              serviceOffering={service.serviceOffering}
-              isPrimary={
-                service.id === "1-1-engagement" || service.id === "group-format"
-              }
-              isSecondary={service.id === "team-organization"}
-              image={service.image}
-              imageAlt={service.imageAlt}
-            />
-          ))}
-        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
+          {services.map(
+            (
+              { id, title, subtitle, steps, serviceOffering, image, imageAlt },
+              idx,
+            ) => {
+              const isSecondary = idx === 1;
 
-        {/* Learn More Button */}
-        <div className="text-end">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 text-primary text-sm font-semibold hover:text-primary/80 transition-colors duration-200"
-          >
-            Learn More
-            <span>
-              <ArrowRight size={14} />
-            </span>
-          </a>
+              return (
+                <Card
+                  key={id}
+                  className="flex flex-col h-full transition-transform duration-300 hover:scale-105 overflow-hidden drop-shadow-xl border-0 py-0 gap-0"
+                >
+                  {/* Card Header */}
+                  <div
+                    className={`flex flex-col pt-4 ${
+                      isSecondary
+                        ? "bg-secondary text-secondary-foreground"
+                        : "bg-primary text-primary-foreground"
+                    }`}
+                  >
+                    <CardHeader className="pb-4">
+                      <h3
+                        className={`text-lg sm:text-xl md:text-2xl font-bold mb-2 font-heading ${
+                          isSecondary
+                            ? "text-muted-foreground"
+                            : "text-primary-foreground"
+                        }`}
+                      >
+                        {title}
+                      </h3>
+
+                      {/* Steps as Badges */}
+                      <div className="flex flex-wrap gap-2 mt-3 sm:mt-4">
+                        {steps.map((step: string) => (
+                          <Badge
+                            key={step}
+                            variant="outline"
+                            className={`text-[10px] uppercase tracking-wide h-7 sm:h-8 px-3 py-2 rounded-md ${
+                              isSecondary
+                                ? "bg-secondary/10 text-muted-foreground border-secondary/30 shadow-md shadow-primary/80"
+                                : "bg-primary/10 text-primary-foreground border-primary/30 shadow-md shadow-secondary/40"
+                            }`}
+                          >
+                            {step}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardHeader>
+                  </div>
+
+                  {/* Image */}
+                  <ServiceImage image={image} imageAlt={imageAlt} />
+
+                  {/* Bottom Content */}
+                  <CardContent className="flex flex-col gap-2 grow bg-background px-5 sm:px-6 py-4 sm:py-5">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-secondary">
+                      {serviceOffering}
+                    </p>
+                    <p className="text-sm sm:text-base leading-relaxed">
+                      {subtitle}
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            },
+          )}
         </div>
       </div>
     </section>

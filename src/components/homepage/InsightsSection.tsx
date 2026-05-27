@@ -1,6 +1,9 @@
 "use client";
 
-import { InsightCard } from "@/components/shared/InsightCard";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { Plus } from "lucide-react";
 
 interface Insight {
   id: string;
@@ -11,6 +14,11 @@ interface Insight {
   publishDate: string;
   variant?: "primary" | "secondary";
 }
+
+const BADGE_VARIANTS: Record<string, string> = {
+  primary: "bg-primary text-white",
+  secondary: "bg-secondary text-white",
+};
 
 const insights: Insight[] = [
   {
@@ -49,32 +57,71 @@ const insights: Insight[] = [
 export function InsightsSection() {
   return (
     <section className="w-full" aria-labelledby="insights-heading">
-      <div className="px-6 md:px-14 py-6 md:py-8">
+      <div className="px-6 sm:px-10 md:px-14 py-12 sm:py-16 md:py-24 mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="mb-16 text-center">
-          <p className="text-xs md:text-sm font-inter font-bold mb-2 uppercase tracking-widest text-secondary">
+        <div className="mb-10 sm:mb-14 md:mb-16 text-center">
+          <p className="text-xs sm:text-sm font-inter font-bold mb-2 uppercase tracking-widest text-secondary">
             INSIGHTS
           </p>
           <h2
             id="insights-heading"
-            className="text-2xl md:text-3xl font-semibold font-heading text-deep-green"
+            className="text-2xl sm:text-3xl font-semibold font-heading text-deep-green"
           >
             Recent Thinking
           </h2>
         </div>
 
         {/* Insights Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
           {insights.map((insight) => (
-            <InsightCard
+            <Card
               key={insight.id}
-              category={insight.category}
-              title={insight.title}
-              description={insight.description}
-              readTime={insight.readTime}
-              publishDate={insight.publishDate}
-              variant={insight.variant}
-            />
+              className="flex flex-col h-full border-l-4 border-l-primary hover:shadow-xl transition-all duration-300 bg-background rounded-lg"
+            >
+              <CardHeader className="pb-2">
+                <div className="flex flex-wrap gap-2">
+                  {insight.category.split(",").map((category: string) => (
+                    <Badge
+                      key={category.trim()}
+                      variant="outline"
+                      className={`text-[10px] uppercase tracking-wide h-7 sm:h-8 px-3 py-2 rounded-md border-0 ${BADGE_VARIANTS[insight.variant ?? "primary"]}`}
+                    >
+                      {category.trim()}
+                    </Badge>
+                  ))}
+                </div>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-semibold mt-3 sm:mt-4 leading-snug font-heading text-slate-900">
+                  {insight.title}
+                </h3>
+              </CardHeader>
+
+              <CardContent className="flex flex-col grow pt-2">
+                <p className="text-sm sm:text-base mb-5 sm:mb-6 leading-relaxed grow">
+                  {insight.description}
+                </p>
+
+                <div className="flex justify-between border-t pt-3 sm:pt-4">
+                  <div className="flex items-center gap-1 text-xs text-primary/60 uppercase tracking-wide">
+                    <span>{insight.readTime}</span>
+                    <span className="w-1 h-1 bg-primary/60 rounded-full" />
+                    <span>{insight.publishDate}</span>
+                  </div>
+
+                  {/* Read Link */}
+                  <Link
+                    href="#"
+                    className="group text-xs font-bold text-secondary hover:text-secondary/80 transition-colors duration-200 flex items-center gap-1"
+                  >
+                    Read
+                    <Plus
+                      size={18}
+                      strokeWidth={3}
+                      className="group-hover:rotate-90 transition-transform duration-300"
+                    />
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>
