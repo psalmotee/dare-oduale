@@ -74,6 +74,7 @@ export function LifeSchoolMandateSection() {
                 src={LifeSchoolImage}
                 alt="LIFE School and Integration"
                 fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="object-cover rounded-2xl"
               />
             </div>
