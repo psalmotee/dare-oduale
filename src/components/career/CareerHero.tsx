@@ -7,12 +7,7 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-interface Stat {
-  num: string;
-  label: string;
-}
-
-const STATS: Stat[] = [
+const stats = [
   { num: "120", label: "Countries (Global Reach)" },
   { num: "13M+", label: "Users Impacted" },
   { num: "15", label: "Years Experience" },
@@ -20,14 +15,13 @@ const STATS: Stat[] = [
 ];
 
 export function CareerHero() {
-  const stats = STATS;
   return (
     <section
       className="overflow-hidden bg-card"
       aria-labelledby="career-hero-heading"
     >
       {/* Hero Section */}
-      <div className="mx-auto max-w-7xl px-6 pb-12 pt-6 sm:px-10 sm:pb-16 sm:pt-8 md:px-14 md:pb-24 md:pt-10">
+      <div className="px-6 sm:px-10 md:px-14 py-12 sm:py-16 md:py-24 mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-start justify-center">
           {/* Left — Images */}
           <div className="flex-1 relative w-full">
@@ -41,7 +35,7 @@ export function CareerHero() {
                 alt="Career hero visual representation"
                 fill
                 priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-2xl"
               />
             </div>
@@ -65,7 +59,6 @@ export function CareerHero() {
               </p>
             </motion.div>
 
-            {/* Portrait — overlaps bottom-right of hero image */}
             <div
               className="absolute -bottom-10 -right-3 sm:-bottom-16 sm:-right-6 lg:-bottom-14 lg:-right-14 w-28 h-32 sm:w-48 sm:h-52 md:w-64 md:h-72 lg:w-69 lg:h-70 rounded-2xl border-4 sm:border-8 border-card overflow-hidden hover:scale-105 transition-transform duration-300 drop-shadow-xl"
               aria-hidden="true"
@@ -75,7 +68,7 @@ export function CareerHero() {
                 alt="Dare Oduale portrait"
                 fill
                 priority
-                sizes="(min-width: 1024px) 276px, (min-width: 768px) 256px, (min-width: 640px) 192px, 112px"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover rounded-2xl"
               />
             </div>
@@ -92,7 +85,7 @@ export function CareerHero() {
               </div>
 
               {/* Heading */}
-              <h1 className="font-serif text-2xl font-bold leading-[1.18] tracking-[-0.04em] text-primary sm:text-3xl md:text-4xl lg:text-5xl lg:leading-[1.14]">
+              <h1 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-[1.05] tracking-[-0.04em] text-primary">
                 Fifteen years of making teams — and the people in them —
                 genuinely better.
               </h1>
@@ -124,19 +117,19 @@ export function CareerHero() {
         className="bg-primary mt-16 sm:mt-20 lg:mt-24"
         aria-labelledby="stats-heading"
       >
-        <div className="mx-auto max-w-7xl px-3 py-6 sm:px-10 sm:py-12 md:px-14 md:py-16">
-          <div className="grid grid-cols-4 gap-0 sm:gap-6 md:gap-8">
+        <div className="px-6 sm:px-10 md:px-14 py-8 sm:py-12 md:py-16 mx-auto max-w-7xl">
+          <div className="grid grid-cols-4 gap-2 sm:gap-6 md:gap-8">
             {stats.map(({ num, label }, i) => (
               <div
                 key={label}
-                className={`flex min-w-0 flex-col items-center gap-1 px-1 sm:gap-2 ${
+                className={`flex flex-col items-center gap-1 sm:gap-2 ${
                   i > 0 ? "border-l border-border/20" : ""
                 }`}
               >
-                <h2 className="text-base font-bold leading-none text-center text-primary-foreground sm:text-2xl md:text-3xl lg:text-4xl">
+                <h2 className="text-md sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-foreground leading-none text-center">
                   {num}
                 </h2>
-                <span className="text-center text-[6px] uppercase leading-tight tracking-[0.5px] text-primary-foreground/60 min-[380px]:text-[7px] sm:text-[9px] sm:tracking-[2px] md:text-[10px]">
+                <span className="text-primary-foreground/60 text-[7px] sm:text-[9px] md:text-[10px] tracking-[1.5px] sm:tracking-[2px] uppercase leading-tight text-center px-1">
                   {label}
                 </span>
               </div>

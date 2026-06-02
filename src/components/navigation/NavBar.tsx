@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetTrigger,
   SheetTitle,
 } from "@/components/ui/sheet";
@@ -76,10 +75,6 @@ export function NavBar() {
 
           <SheetContent side="right" className="bg-background w-72 sm:w-80 p-0">
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
-            <SheetDescription className="sr-only">
-              Use these links to navigate the main sections of the Dare Oduale
-              website.
-            </SheetDescription>
 
             <div className="flex flex-col h-full px-6 pt-10 pb-8">
               {/* Mobile Logo */}
