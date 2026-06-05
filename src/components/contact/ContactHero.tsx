@@ -20,12 +20,12 @@ export function ContactHero() {
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="bg-foreground">
           <div className="max-w-lg h-auto m-auto" aria-hidden="true">
-            <Image src={phoneMockup} alt="" sizes="(max-width: 768px) 100vw, 50vw" className="w-full h-auto" />
+            <Image src={phoneMockup} alt="" sizes="(max-width: 768px) 100vw, 50vw" className="w-full h-auto" loading="lazy" />
           </div>
         </div>
 
         {/* Form */}
-        <div className="flex flex-col justify-center px-6 sm:px-10 md:px-14 lg:pr-24 py-10 sm:py-12 md:py-16">
+        <div className="flex flex-col justify-center px-6 sm:px-10 md:px-14 lg:pr-18 py-10 sm:py-12 md:py-16">
           <p className="mb-2 sm:mb-3 text-[10px] font-semibold uppercase tracking-[0.24em] text-secondary">
             Inquiry
           </p>
