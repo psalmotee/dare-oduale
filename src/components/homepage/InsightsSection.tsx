@@ -46,7 +46,7 @@ const insights = [
 
 export function InsightsSection() {
   return (
-    <section className="w-full" aria-labelledby="insights-heading">
+    <section id="insight" className="w-full" aria-labelledby="insights-heading">
       <div className="px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 mx-auto max-w-7xl space-y-8">
         {/* Section Header */}
         <div className="text-center">
@@ -98,12 +98,7 @@ export function InsightsSection() {
                   </div>
 
                   {/* Read Link */}
-                  <CtaLink
-                    href="#"
-                    variant="ghost"
-                    size="xs"
-                    className="group"
-                  >
+                  <CtaLink href="#" variant="ghost" size="xs" className="group">
                     Read
                     <span>
                       <Plus

@@ -21,7 +21,6 @@ export function NavBar() {
     { label: "Career", href: "/career" },
     { label: "Business", href: "/business" },
     { label: "Ministry", href: "/ministry" },
-    { label: "Insights", href: "/insights" },
   ];
 
   return (
@@ -49,7 +48,7 @@ export function NavBar() {
                 pathname === link.href
                   ? "underline underline-offset-4 decoration-2"
                   : ""
-                }`}
+              }`}
               aria-label={`Navigate to ${link.label} page`}
             >
               {link.label}
@@ -68,8 +67,6 @@ export function NavBar() {
           Book a Strategy Call
         </CtaLink>
 
-
-
         {/* Mobile Menu Trigger */}
         <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
           <SheetTrigger
@@ -79,7 +76,11 @@ export function NavBar() {
             <Menu className="h-6 w-6 text-primary" />
           </SheetTrigger>
 
-          <SheetContent side="right" className="bg-background w-72 sm:w-80 p-0">
+          <SheetContent
+            aria-describedby={undefined}
+            side="right"
+            className="bg-background w-72 sm:w-80 p-0"
+          >
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
 
             <div className="flex flex-col px-6 py-8 gap-6">

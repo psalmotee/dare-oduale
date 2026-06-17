@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/cta-button";
 import { CtaLink } from "@/components/ui/ctalink";
 import { SendHorizontal } from "lucide-react";
+import { ScrollLink } from "@/components/ui/scroll-link";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,7 @@ export function Footer() {
 
   const resourceLinks = [
     { label: "Ministry", href: "/ministry" },
-    { label: "Insight", href: "/insight" },
+    { label: "Insight", href: "/#insight", sectionId: "insight" },
     { label: "Contact", href: "/contact" },
   ];
 
@@ -78,13 +79,14 @@ export function Footer() {
               <ul className="mt-3 sm:mt-4 space-y-3 sm:space-y-4 text-sm">
                 {resourceLinks.map((item) => (
                   <li key={item.label}>
-                    <Link
+                    <ScrollLink
                       href={item.href}
+                      sectionId={item.sectionId}
                       className="text-primary-foreground/80 transition-all hover:text-secondary"
                       aria-label={`Navigate to ${item.label}`}
                     >
                       {item.label}
-                    </Link>
+                    </ScrollLink>
                   </li>
                 ))}
               </ul>

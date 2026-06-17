@@ -17,7 +17,7 @@ export function CareerCTA() {
 
         {/* CTA Button */}
         <CtaLink
-          href=""
+          href="/contact"
           className="tracking-[0.14em]"
           aria-label="Book a strategy call"
         >
